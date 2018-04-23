@@ -10,3 +10,8 @@ function inOrder(root) {
 }
 
 console.log(sampleRootNode.data);
+
+module.exports = {
+  inOrder: inOrder,
+
+};

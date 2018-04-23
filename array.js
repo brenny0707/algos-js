@@ -16,9 +16,13 @@ function perms(arr) {
 }
 
 //perm tests
-console.log(perms("hi there"));
-console.log(perms([]));
-console.log(perms([1]));
+// console.log(perms("hi there"));
+// console.log(perms([]));
+// console.log(perms([1]));
 // console.log(perms([1,2]));
-console.log(perms([1,2,3]));
+// console.log(perms([1,2,3]));
 // console.log(perms([1,2,3,4,5]));
+
+module.exports = {
+  perms: perms,
+};
