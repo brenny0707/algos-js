@@ -45,4 +45,5 @@ const sevenNode = new BinaryNode({
   right: tenNode,
 });
 
-export { BinaryNode, sevenNode as rootNode };
+exports.sampleRootNode = sevenNode;
+// export { BinaryNode, sevenNode as rootNode };
