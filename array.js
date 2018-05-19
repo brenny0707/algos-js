@@ -1,3 +1,15 @@
+//myMap, take an array and return a modified array based on callback
+function myMap(arr, func) {
+  const mappedArr = [];
+  arr.forEach( (el) => {
+    mappedArr.push(func(el));
+  });
+  return mappedArr;
+}
+
+//myMap tests
+// console.log(myMap([1,2,3,4,5], function(num) {return num + 1}));
+
 //Permutation, find all permutations of an array(assume all elements are unique or if there are duplicates, include them again)
 function perms(arr) {
   if (!Array.isArray(arr)) return "Not an Array";
