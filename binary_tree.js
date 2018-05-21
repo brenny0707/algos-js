@@ -35,9 +35,17 @@ Create links to Inorder successor and print the data using these links, and fina
       b) Go to this left child, i.e., current = current->left
 */
 
+//treeHeight, returns height of tree, root and leaf node-inclusive
+function treeHeight(root) {
+  if (!root) return 0;
+  if (!root.left && !root.right) return 1;
+  return Math.max.apply(Math, [treeHeight(root.left), treeHeight(root.right)]) + 1;
+}
+
 module.exports = {
   inOrder: inOrder,
   preOrder: preOrder,
   postOrder: postOrder,
+  treeHeight: treeHeight,
   root: sampleRootNode,
 };
