@@ -36,5 +36,6 @@ function perms(arr) {
 // console.log(perms([1,2,3,4,5]));
 
 module.exports = {
+  myMap: myMap,
   perms: perms,
 };
