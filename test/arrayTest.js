@@ -1,5 +1,5 @@
 const {assert, expect} = require('chai');
-const { myMap, perms, quickSort } = require('../array');
+const { myMap, perms, quickSort, mergeSort } = require('../array');
 
 describe('Array', function() {
   describe('myMap', function() {
@@ -47,6 +47,25 @@ describe('Array', function() {
           else return -1;
         });
         assert.deepEqual(quickSort([3,6,2,9,10,3], testComparator), [10,9,6,3,3,2]);
+      })
+    })
+    describe('mergesort', function() {
+      it('handles an empty array', function () {
+        assert.deepEqual(mergeSort([]), []);
+      })
+      it('handles an array with 1 element', function () {
+        assert.deepEqual(mergeSort([1]), [1]);
+      })
+      it('handles an array with multiple elements', function () {
+        assert.deepEqual(mergeSort([3, 6, 2, 9, 10, 3]), [2, 3, 3, 6, 9, 10]);
+      })
+      it('handles an array with multiple elements with its own comparator function', function () {
+        const testComparator = ((a, b) => {
+          if (a < b) return 1;
+          else if (a === b) return 0;
+          else return -1;
+        });
+        assert.deepEqual(mergeSort([3, 6, 2, 9, 10, 3], testComparator), [10, 9, 6, 3, 3, 2]);
       })
     })
   })

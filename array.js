@@ -52,8 +52,30 @@ function quickSort(arr, comparator) {
   return quickSort(left, comparator).concat([pivot], quickSort(right, comparator));
 }
 
+function mergeSort(arr, comparator) {
+  if (!comparator) {
+    comparator = testComparator;
+  }
+  if (arr.length <= 1) return arr;
+  const mid = Math.floor(arr.length / 2);
+  const left = mergeSort(arr.slice(0, mid), comparator);
+  const right = mergeSort(arr.slice(mid), comparator);
+  return merge(left, right, comparator);
+
+  function merge(left, right, comparator) {
+    const merged = [];
+    while (left.length > 0 && right.length > 0) {
+      comparator(left[0], right[0]) !== 1 ?
+        merged.push(left.shift()) :
+        merged.push(right.shift());
+    }
+    return merged.concat(left, right);
+  }
+}
+
 module.exports = {
   myMap: myMap,
   perms: perms,
   quickSort: quickSort,
+  mergeSort: mergeSort,
 };
