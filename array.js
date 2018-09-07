@@ -7,9 +7,6 @@ function myMap(arr, func) {
   return mappedArr;
 }
 
-//myMap tests
-// console.log(myMap([1,2,3,4,5], function(num) {return num + 1}));
-
 //Permutation, find all permutations of an array(assume all elements are unique or if there are duplicates, include them again)
 function perms(arr) {
   if (!Array.isArray(arr)) return "Not an Array";
@@ -27,15 +24,36 @@ function perms(arr) {
   return finalPerms;
 }
 
-//perm tests
-// console.log(perms("hi there"));
-// console.log(perms([]));
-// console.log(perms([1]));
-// console.log(perms([1,2]));
-// console.log(perms([1,2,3]));
-// console.log(perms([1,2,3,4,5]));
+
+/**
+ * Sorting algorithims
+ */
+
+const testComparator = ( (a,b) => {
+  if (a < b) return -1;
+  else if (a === b) return 0;
+  else return 1;
+});
+
+function quickSort(arr, comparator) {
+  if (!comparator) {
+    comparator = testComparator;
+  }
+  if (arr.length <= 1) return arr;
+  const pivot = arr[0];
+  const rest = arr.slice(1);
+  const left = [];
+  const right = [];
+  while (rest.length > 0) {
+    comparator(rest[0], pivot) !== 1 ?
+      left.push(rest.shift()) :
+      right.push(rest.shift());
+  }
+  return quickSort(left, comparator).concat([pivot], quickSort(right, comparator));
+}
 
 module.exports = {
   myMap: myMap,
   perms: perms,
+  quickSort: quickSort,
 };

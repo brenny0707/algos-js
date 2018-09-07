@@ -1,5 +1,5 @@
 const {assert, expect} = require('chai');
-const { myMap, perms } = require('../array');
+const { myMap, perms, quickSort } = require('../array');
 
 describe('Array', function() {
   describe('myMap', function() {
@@ -24,6 +24,19 @@ describe('Array', function() {
     })
     it('returns permutations for larger arrays', function () {
       assert.deepEqual(perms([1,2,3]), [[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]);
+    })
+  })
+  describe('sorts', function() {
+    describe('quicksort', function() {
+      it('handles an empty array', function() {
+        assert.deepEqual(quickSort([]), []);
+      })
+      it('handles an array with 1 element', function() {
+        assert.deepEqual(quickSort([1]), [1]);
+      })
+      it('handles an array with multiple elements', function () {
+        assert.deepEqual(quickSort([3,6,2,9,10,3]), [2,3,3,6,9,10]);
+      })
     })
   })
 })
