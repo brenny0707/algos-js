@@ -2,7 +2,7 @@ const BinaryNode = function(nodeOptions) {
     this.data = nodeOptions.data;
     this.left = nodeOptions.left ? nodeOptions.left : null;
     this.right = nodeOptions.right ? nodeOptions.right : null;
-    // this.parent = nodeOptions.parent ? nodeOptions.parent : null;
+    this.parent = nodeOptions.parent ? nodeOptions.parent : null;
 };
 /* Sample tree
           7

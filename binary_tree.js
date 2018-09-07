@@ -42,6 +42,21 @@ function treeHeight(root) {
   return Math.max.apply(Math, [treeHeight(root.left), treeHeight(root.right)]) + 1;
 }
 
+function nextLargest(node) {
+  let curNode = node;
+  let returnNode = null;
+  if (!curNode) return null;
+  if (curNode.right) {
+    curNode = curNode.right;
+    while (curNode.left) {
+      curNode = curNode.left;
+    }
+  }
+  else {
+    curNode
+  }
+}
+
 module.exports = {
   inOrder: inOrder,
   preOrder: preOrder,
