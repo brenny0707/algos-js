@@ -25,7 +25,15 @@ class Graph {
   }
 
   addEdge(vRef, wRef, weight) {
-    if (!this.verticies[vRef] || !this.verticies[wRef]) return "Missing vertex/verticies";
+    if (!this.verticies[vRef] || !this.verticies[wRef]) {
+      const missingVerticies = [];
+      if (!this.verticies[vRef]) missingVerticies.push(vRef);
+      if (!this.verticies[wRef]) missingVerticies.push(wRef);
+      const errorMessage = missingVerticies.length > 1 ?
+                              `Missing verticies ${missingVerticies}` :
+                              `Missing vertex ${missingVerticies}`;
+      return console.log(errorMessage);
+    }
     const adj = this.adjList;
     const vertexRefPair = [vRef, wRef];
     vertexRefPair.forEach( (ref, idx) => {
@@ -54,5 +62,7 @@ testGraph.addEdge("A", "D", 45);
 testGraph.addEdge("B", "C", 25);
 testGraph.addEdge("B", "D", 25);
 testGraph.addEdge("C", "D", 40);
+testGraph.addEdge("C", "H", 40);
+testGraph.addEdge("W", "H", 40);
 console.log(testGraph.verticies);
 console.log(testGraph.adjList);
