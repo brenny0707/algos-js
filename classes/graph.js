@@ -46,4 +46,13 @@ class Graph {
 const testGraph = new Graph();
 testGraph.addVertex("A");
 testGraph.addVertex("B");
-console.log(testGraph.addEdge("A", "B", 50));
+testGraph.addVertex("C");
+testGraph.addVertex("D");
+testGraph.addEdge("A", "B", 10);
+testGraph.addEdge("A", "C", 50);
+testGraph.addEdge("A", "D", 45);
+testGraph.addEdge("B", "C", 25);
+testGraph.addEdge("B", "D", 25);
+testGraph.addEdge("C", "D", 40);
+console.log(testGraph.verticies);
+console.log(testGraph.adjList);
