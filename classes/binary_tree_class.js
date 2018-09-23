@@ -12,7 +12,20 @@ const BinaryNode = function(nodeOptions) {
       2   8    13
      / \
     1   3
+      //
+      4!
 */
+
+//NON-BST node
+const fourNonBSTNode = new BinaryNode({
+  data: 4,
+});
+// const nineNonBSTNode = new BinaryNode({
+//   data: 9,
+// });
+
+
+
 const oneNode = new BinaryNode({
   data: 1,
 });
@@ -45,5 +58,20 @@ const sevenNode = new BinaryNode({
   right: tenNode,
 });
 
+
+function isBST(node = sevenNode, min = null, max = null) {
+  if (!node) return false;
+  if (min && node.data < min) return false;
+  if (max && node.data > max) return false;
+  const leftChildBST = !node.left ?
+                        true :
+                        isBST(node.left, min, node.data);
+  const rightChildBST = !node.right ?
+                        true :
+                        isBST(node.right, node.data, max);
+  return (leftChildBST && rightChildBST);
+}
+
+console.log(isBST());
 exports.sampleRootNode = sevenNode;
 // export { BinaryNode, sevenNode as rootNode };
