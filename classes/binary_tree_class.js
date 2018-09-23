@@ -1,5 +1,5 @@
 const BinaryNode = function(nodeOptions) {
-    this.data = nodeOptions.data;
+    this.val = nodeOptions.val;
     this.left = nodeOptions.left ? nodeOptions.left : null;
     this.right = nodeOptions.right ? nodeOptions.right : null;
     this.parent = nodeOptions.parent ? nodeOptions.parent : null;
@@ -18,60 +18,60 @@ const BinaryNode = function(nodeOptions) {
 
 //NON-BST node
 const fourNonBSTNode = new BinaryNode({
-  data: 4,
+  val: 4,
 });
 // const nineNonBSTNode = new BinaryNode({
-//   data: 9,
+//   val: 9,
 // });
 
 
 
 const oneNode = new BinaryNode({
-  data: 1,
+  val: 1,
 });
 const threeNode = new BinaryNode({
-  data: 3,
+  val: 3,
 });
 const twoNode = new BinaryNode({
-  data: 2,
+  val: 2,
   left: oneNode,
   right: threeNode,
 });
 const fiveNode = new BinaryNode({
-  data: 5,
+  val: 5,
   left: twoNode,
 });
 const eightNode = new BinaryNode({
-  data: 8,
+  val: 8,
 });
 const thirteenNode = new BinaryNode({
-  data: 13
+  val: 13
 });
 const tenNode = new BinaryNode({
-  data: 10,
+  val: 10,
   left: eightNode,
   right: thirteenNode
 });
 const sevenNode = new BinaryNode({
-  data: 7,
+  val: 7,
   left: fiveNode,
   right: tenNode,
 });
 
 
-function isBST(node = sevenNode, min = null, max = null) {
-  if (!node) return false;
-  if (min && node.data < min) return false;
-  if (max && node.data > max) return false;
+function isValidBST(node = sevenNode, min = null, max = null) {
+  if (!node) return true;
+  if (min !== null && node.val <= min) return false;
+  if (max !== null && node.val >= max) return false;
   const leftChildBST = !node.left ?
-                        true :
-                        isBST(node.left, min, node.data);
+    true :
+    isValidBST(node.left, min, node.val);
   const rightChildBST = !node.right ?
-                        true :
-                        isBST(node.right, node.data, max);
+    true :
+    isValidBST(node.right, node.val, max);
   return (leftChildBST && rightChildBST);
 }
 
-console.log(isBST());
+console.log(isValidBST());
 exports.sampleRootNode = sevenNode;
 // export { BinaryNode, sevenNode as rootNode };
