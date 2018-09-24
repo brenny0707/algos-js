@@ -8,4 +8,8 @@ function isUnique(str) {
     else isSeen[ch] = true;
   }
   return true;
+  /**
+   * Time complexity: 0(c) where c = number of characters in set, ex: a-z = 26, ASCII = 128, etc
+   * Space complexity: 0(c) as well, since isSeen only can increase as large as c before returning false on next iteration
+   */
 }
