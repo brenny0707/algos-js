@@ -47,7 +47,9 @@ class HashTable {
       const bucketPair = bucket[i];
       if (bucketPair[0] === key) {
         this.size--;
-        return bucketPair.splice(i, 1)[0];
+        //splicing on bucket which returns an array with the spliced bucketPair duple, so you key at idx 0 to get duple
+        //Ex: bucket.spliced(i, 1) = [[splicedKey, splicedVal]] => keyed at idx 0 = [splicedKey, splicedVal]
+        return bucket.splice(i, 1)[0];
       }
     }
     return null;
@@ -99,3 +101,7 @@ console.log("Replaced Adam hopefully?");
 console.log(testHash.search("A"));
 console.log(`After replacing a fifth element, testHash should still have ${testHash.size} elements.`)
 console.log(`After replacing a fifth element, testHash should still have ${testHash.buckets.length} buckets.`)
+console.log(testHash.delete("A"));
+console.log(`Removing "A" should now mean searching A is null? Result: ${testHash.search("A")}`);
+console.log(`After deleting "A", testHash should now have 4 elements. Result: ${testHash.size} elements.`)
+console.log(`After deleting "A", testHash should still have 8 buckets. Result: ${testHash.buckets.length} buckets.`)
