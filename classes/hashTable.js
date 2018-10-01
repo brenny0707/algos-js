@@ -94,3 +94,8 @@ console.log(`After inserting a fifth element, testHash now has ${testHash.size} 
 console.log(`After inserting a fifth element, testHash now has ${testHash.buckets.length} buckets.`)
 console.log(testHash.search("E"));
 console.log(testHash.search("A"));
+testHash.insert("A", "ADAM REPLACEMENT");
+console.log("Replaced Adam hopefully?");
+console.log(testHash.search("A"));
+console.log(`After replacing a fifth element, testHash should still have ${testHash.size} elements.`)
+console.log(`After replacing a fifth element, testHash should still have ${testHash.buckets.length} buckets.`)
