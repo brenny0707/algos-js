@@ -66,8 +66,15 @@ function stringPalindromePermutation(str) {
     if (countObj[ch]) countObj[ch]++;
     else countObj[ch] = 1;
   }
+  /**
+   * oddConditional helps compile the odd/even scenario for a string palindrome
+   * if str.length is odd, you expect ONLY ONE character to have an odd # of counts
+   *    you start oddConditional with a default value of false, and once you run into the first odd instance, any              subsequent odd instances means you cannot have a palindrome
+   * if str.length is even, you don't want any instances of odd character counts, so you default oddConditional to true, so any (the first) odd instance you run into should automatically return false 
+   */
   let oddConditional = false;
   if (str.length % 2 === 0) oddConditional = true;
+  //Need to break keys into new array and for loop rather than forEach, since the return doesn't actually stick inside a forEach
   const keys = Object.keys(countObj);
   for (let j = 0; j < keys.length; j++) {
     const chCount = countObj[keys[j]];
@@ -78,7 +85,3 @@ function stringPalindromePermutation(str) {
   }
   return true;
 }
-console.log()
-console.log(stringPalindromePermutation("ballaBr"));
-console.log(stringPalindromePermutation("ddddd"));
-console.log(stringPalindromePermutation("ballaBrddd"));
