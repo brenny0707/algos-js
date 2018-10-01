@@ -58,3 +58,27 @@ function oneAway(str1, str2) {
  * Time complexity: Worst case is 0(n) where n is the length of the short string
  * Space complexity: 0(1) due to no dynamic data structure creation
  */
+
+function stringPalindromePermutation(str) {
+  const countObj = {};
+  for (let i = 0; i < str.length; i++) {
+    const ch = str.charAt(i).toLowerCase();
+    if (countObj[ch]) countObj[ch]++;
+    else countObj[ch] = 1;
+  }
+  let oddConditional = false;
+  if (str.length % 2 === 0) oddConditional = true;
+  const keys = Object.keys(countObj);
+  for (let j = 0; j < keys.length; j++) {
+    const chCount = countObj[keys[j]];
+    if (chCount % 2 === 1) {
+      if (oddConditional) return false;
+      else oddConditional = true;
+    }
+  }
+  return true;
+}
+console.log()
+console.log(stringPalindromePermutation("ballaBr"));
+console.log(stringPalindromePermutation("ddddd"));
+console.log(stringPalindromePermutation("ballaBrddd"));
