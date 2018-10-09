@@ -12,8 +12,6 @@ const BinaryNode = function(nodeOptions) {
       2   8    13
      / \
     1   3
-      //
-      4!
 */
 
 //NON-BST node
@@ -58,7 +56,6 @@ const sevenNode = new BinaryNode({
   right: tenNode,
 });
 
-
 function isValidBST(node = sevenNode, min = null, max = null) {
   if (!node) return true;
   if (min !== null && node.val <= min) return false;
@@ -72,6 +69,23 @@ function isValidBST(node = sevenNode, min = null, max = null) {
   return (leftChildBST && rightChildBST);
 }
 
-console.log(isValidBST());
+//where height difference of subtrees are not greater than 1
+function isBalanced(node = sevenNode) {
+  if (!node) return false;
+  const balHeightVal = balHeight(node);
+  return balHeightVal ? true : false;
+}
+
+function balHeight(node) {
+  if (!node) return 0;
+  const lHeight = balHeight(node.left);
+  const rHeight = balHeight(node.right);
+  if (lHeight === false || rHeight === false) return false;
+  if (Math.abs(lHeight - rHeight) > 1) return false;
+  return Math.max(...[lHeight, rHeight]) + 1;
+}
+
+// console.log(isValidBST());
+console.log(isBalanced());
 exports.sampleRootNode = sevenNode;
 // export { BinaryNode, sevenNode as rootNode };
