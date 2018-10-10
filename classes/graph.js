@@ -60,7 +60,6 @@ class Graph {
       let curNodeRef = nodeQueue.shift();
       if (curNodeRef === endNodeRef);
       else {
-        let curWeight = nodeWeights[curNodeRef] ? nodeWeights[curNodeRef] : 0;
         const curNodeAdjs = this.adjList[curNodeRef]; //this.adjList["A"] => { B: 10, C: 50, D: 45 }
         const curNodeAdjRefs = Object.keys(curNodeAdjs);
         curNodeAdjRefs.forEach( (adjRef) => {
@@ -113,4 +112,21 @@ dijkstraGraph.addEdge("F", "E", 80);
 dijkstraGraph.addEdge("H", "D", 25);
 dijkstraGraph.addEdge("H", "E", 30);
 dijkstraGraph.addEdge("D", "E", 100);
-console.log(dijkstraGraph.findShortestPath("A","E"));
+console.log(dijkstraGraph.findShortestPath("A","E")); // => 70
+
+const dijkstraGraph2 = new Graph();
+dijkstraGraph2.addVertex("A");
+dijkstraGraph2.addVertex("B");
+dijkstraGraph2.addVertex("C");
+dijkstraGraph2.addVertex("D");
+dijkstraGraph2.addVertex("E");
+dijkstraGraph2.addVertex("F");
+dijkstraGraph2.addEdge("A", "B", 5);
+dijkstraGraph2.addEdge("A", "E", 25);
+dijkstraGraph2.addEdge("B", "C", 10);
+dijkstraGraph2.addEdge("B", "D", 5);
+dijkstraGraph2.addEdge("C", "F", 20);
+dijkstraGraph2.addEdge("D", "F", 50);
+dijkstraGraph2.addEdge("D", "E", 5);
+dijkstraGraph2.addEdge("E", "F", 10);
+console.log(dijkstraGraph2.findShortestPath("A","F")); // => 25
