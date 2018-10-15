@@ -1,5 +1,5 @@
 const {assert, expect} = require('chai');
-const { myMap, perms, quickSort, mergeSort } = require('../array');
+const { myMap, perms, quickSort, mergeSort, boggleCheck } = require('../array');
 
 describe('Array', function() {
   describe('myMap', function() {
@@ -68,5 +68,34 @@ describe('Array', function() {
         assert.deepEqual(mergeSort([3, 6, 2, 9, 10, 3], testComparator), [10, 9, 6, 3, 3, 2]);
       })
     })
+  })
+  describe.only('boggleCheck', function() {
+    const repeatGrid = [
+                          ['a','f', 'e'],
+                          ['b', 'b', 'd'],
+                          ['h', 'b', 'c']
+    ]
+    
+    const boggleThreeGrid = [
+                              ['b','a','a'],
+                              ['g','b','c'],
+                              ['d','c','e'],
+    ];
+
+    const biggerBoggleGrid = [
+                              ['p','r','d','s'],
+                              ['e','a','b','o'],
+                              ['t','w','e','p'],
+                              ['e','o','s','c'],
+    ]
+    it('checks which words can be made on boggle grid from given words', function() {
+      assert.deepEqual(boggleCheck(["bce"], boggleThreeGrid), ["bce"])
+    });
+    it('checks which words can be made on boggle grid from given words', function() {
+      assert.deepEqual(boggleCheck(["pete", "raws", "sbwetepraec", "so", "rabbid"], biggerBoggleGrid), ["pete", "raws", "sbwetepraec"])
+    });
+    it('checks which words can be made on boggle grid from given words', function() {
+      assert.deepEqual(boggleCheck(["abbcdefbhb"], repeatGrid), [])
+    });
   })
 })

@@ -73,9 +73,94 @@ function mergeSort(arr, comparator) {
   }
 }
 
+/**
+ * Matricies
+ */
+
+
+ /**
+  * 
+  * @param {Array[String]} dict 
+  * @param {2D Array} board 
+  * words must be greater than length 3
+  */
+function validPos(pos, maxPos) {
+  return pos <= maxPos;
+}
+
+function boggleCheck(dict, board) {
+  const valids = [];
+  const boardCharSize = board.length * board[0].length;
+
+  dict.forEach( (word) => {
+    if (word.length >= 3 && word.length <= boardCharSize && isValidWord(word, board)) valids.push(word);
+  })
+  return valids;
+
+  function isValidWord(word, board, xPos = null, yPos = null, isSeen = {}) {
+    if (word.length === 0) return true;
+    if (word === "bba") {
+      console.log(isSeen);
+    }
+    let nextCoords = [];
+    //check each character
+    const firstCh = word.charAt(0);
+    if (!xPos || !yPos) {
+      //initialize first locations
+      for (let i = 0; i < board.length; i++) {
+        for (let j = 0; j < board[0].length; j++) {
+          if (board[i][j] === firstCh) {
+            nextCoords.push([i, j]);
+          }
+        }
+      }
+    }
+    else {
+      //utilize xPos and yPos for adjs
+      const adjCoords = [
+                          [yPos - 1, xPos],
+                          [yPos + 1, xPos],
+                          [yPos, xPos - 1],
+                          [yPos, xPos + 1],
+                          [yPos - 1, xPos - 1],
+                          [yPos - 1, xPos + 1],
+                          [yPos + 1, xPos - 1],
+                          [yPos + 1, xPos + 1],
+                        ];
+      const boardMaxX = board[0].length - 1;
+      const boardMaxY = board.length - 1;
+      adjCoords.forEach( (coords) => {
+        const y = coords[0];
+        const x = coords[1];
+        if ( (!isSeen[y] || !isSeen[y][x]) && validPos(y, boardMaxY) && validPos(x, boardMaxX) && board[y][x] === firstCh) {
+          nextCoords.push([y, x]);
+        }
+      })
+    }
+
+    //recurse on nextCoords
+    const cutWord = word.slice(1);
+    if (nextCoords.length === 0) return false;
+    for (let i = 0; i < nextCoords.length; i++) {
+      const curCoords = nextCoords[i];
+      const newXPos = curCoords[1];
+      const newYPos = curCoords[0];
+      const seenCurObj = {};
+      if (seenCurObj[newYPos]) {
+        seenCurObj[newYPos] = {};
+        seenCurObj[newYPos][newXPos] = true;
+      }
+      const newSeen = Object.assign(isSeen, seenCurObj);
+      if (isValidWord(cutWord, board, newXPos, newYPos, newSeen)) return true;
+    }
+    return false;
+  }
+}
+
 module.exports = {
   myMap: myMap,
   perms: perms,
   quickSort: quickSort,
   mergeSort: mergeSort,
+  boggleCheck: boggleCheck,
 };
