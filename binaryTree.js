@@ -56,7 +56,7 @@ function nextLargest(node, root) {
   }
 }
 
-function isValidBST(node = sevenNode, min = null, max = null) {
+function isValidBST(node, min = null, max = null) {
   if (!node) return true;
   if (min !== null && node.val <= min) return false;
   if (max !== null && node.val >= max) return false;
