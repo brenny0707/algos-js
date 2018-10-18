@@ -69,7 +69,7 @@ describe('Array', function() {
       })
     })
   })
-  describe.only('boggleCheck', function() {
+  describe('boggleCheck', function() {
     const repeatGrid = [
                           ['a','f', 'e'],
                           ['b', 'b', 'd'],
