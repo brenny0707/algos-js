@@ -70,7 +70,7 @@ function isValidBST(node, min = null, max = null) {
 }
 
 //where height difference of subtrees are not greater than 1
-function isBalanced(node = sevenNode) {
+function isBalanced(node) {
   if (!node) return false;
   const balHeightVal = balHeight(node);
   return balHeightVal ? true : false;

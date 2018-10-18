@@ -1,7 +1,7 @@
 const {assert, expect} = require('chai');
 const { myMap, perms, quickSort, mergeSort, boggleCheck } = require('../array');
 
-describe.skip('Array', function() {
+describe('Array', function() {
   describe('myMap', function() {
     it('return a modified array based on function', function() {
       assert.deepEqual(myMap([1,2,3], (el) => {

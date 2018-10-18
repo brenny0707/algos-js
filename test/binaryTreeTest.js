@@ -3,11 +3,11 @@ const { inOrder, preOrder, postOrder, treeHeight, nextLargest, isValidBST, isBal
 const { BinaryNode } = require('../classes/binaryTreeClass');
 
 /* Sample BST non-balanced tree below
-          7
-         / \
-        5   10
-       /   /  \
-      2   8    13
+            7
+         /     \
+        5       10
+       / ||     /  \
+      2  UNB   8    13
      / \
     1   3
 */
@@ -97,5 +97,13 @@ describe('BinaryTree', function() {
     it('should return false when the tree is not valid', function() {
       assert.equal(isValidBST(nonBSTnineNode), false);
     });
+  })
+  describe('isBalanced', function() {
+    it('should return false if height difference is more than 1', function() {
+      assert.equal(isBalanced(sevenNode), false);
+    });
+    it('should return true if height difference is at most 1', function() {
+      assert.equal(isBalanced(nonBSTnineNode), true);
+    })
   })
 })
