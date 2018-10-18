@@ -1,7 +1,7 @@
 const {assert, expect} = require('chai');
 const { myMap, perms, quickSort, mergeSort, boggleCheck } = require('../array');
 
-describe('Array', function() {
+describe.skip('Array', function() {
   describe('myMap', function() {
     it('return a modified array based on function', function() {
       assert.deepEqual(myMap([1,2,3], (el) => {
@@ -69,7 +69,7 @@ describe('Array', function() {
       })
     })
   })
-  describe.only('boggleCheck', function() {
+  describe('boggleCheck', function() {
     const repeatGrid = [
                           ['a','f', 'e'],
                           ['b', 'b', 'd'],

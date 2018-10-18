@@ -1,6 +1,5 @@
 // import {BinaryNode, rootNode} from './classes/binary_tree_class.js';
-const BinaryTree = require('./classes/binary_tree_class');
-const sampleRootNode = BinaryTree.sampleRootNode;
+const { BinaryNode } = require('./classes/binaryTreeClass');
 
 //In-order Tree traversal, left, root, right
 function inOrder(root) {
@@ -21,6 +20,7 @@ function postOrder(root) {
   console.log(root.data);
 }
 
+
 /* Morris Traversal
 DOES NOT USE RECURSION OR A STACK
 Create links to Inorder successor and print the data using these links, and finally revert the changes to restore original tree.
@@ -34,13 +34,6 @@ Create links to Inorder successor and print the data using these links, and fina
          node in current's left subtree
       b) Go to this left child, i.e., current = current->left
 */
-
-//treeHeight, returns height of tree, root and leaf node-inclusive
-function treeHeight(root) {
-  if (!root) return 0;
-  if (!root.left && !root.right) return 1;
-  return Math.max.apply(Math, [treeHeight(root.left), treeHeight(root.right)]) + 1;
-}
 
 function nextLargest(node) {
   let curNode = node;
@@ -57,10 +50,49 @@ function nextLargest(node) {
   }
 }
 
+function isValidBST(node = sevenNode, min = null, max = null) {
+  if (!node) return true;
+  if (min !== null && node.val <= min) return false;
+  if (max !== null && node.val >= max) return false;
+  const leftChildBST = !node.left ?
+    true :
+    isValidBST(node.left, min, node.val);
+  const rightChildBST = !node.right ?
+    true :
+    isValidBST(node.right, node.val, max);
+  return (leftChildBST && rightChildBST);
+}
+
+//where height difference of subtrees are not greater than 1
+function isBalanced(node = sevenNode) {
+  if (!node) return false;
+  const balHeightVal = balHeight(node);
+  return balHeightVal ? true : false;
+}
+
+function balHeight(node) {
+  if (!node) return 0;
+  const lHeight = balHeight(node.left);
+  const rHeight = balHeight(node.right);
+  if (lHeight === false || rHeight === false) return false;
+  if (Math.abs(lHeight - rHeight) > 1) return false;
+  return Math.max(...[lHeight, rHeight]) + 1;
+}
+
+//treeHeight, returns height of tree, root and leaf node-inclusive
+function treeHeight(root) {
+  if (!root) return 0;
+  if (!root.left && !root.right) return 1;
+  return Math.max.apply(Math, [treeHeight(root.left), treeHeight(root.right)]) + 1;
+}
+
 module.exports = {
   inOrder: inOrder,
   preOrder: preOrder,
   postOrder: postOrder,
   treeHeight: treeHeight,
-  root: sampleRootNode,
+  nextLargest: nextLargest,
+  isValidBST: isValidBST,
+  isBalanced: isBalanced,
+  balHeight: balHeight,
 };
