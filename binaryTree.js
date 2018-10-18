@@ -35,18 +35,24 @@ Create links to Inorder successor and print the data using these links, and fina
       b) Go to this left child, i.e., current = current->left
 */
 
-function nextLargest(node) {
+function nextLargest(node, root) {
   let curNode = node;
-  let returnNode = null;
   if (!curNode) return null;
   if (curNode.right) {
     curNode = curNode.right;
     while (curNode.left) {
       curNode = curNode.left;
     }
+    return curNode;
   }
   else {
-    curNode
+    curNode = root;
+    let lowestMax = curNode;
+    while (curNode) {
+      if (curNode.val > node.val && curNode.val < lowestMax.val) lowestMax = curNode;
+      curNode = curNode.val > node.val ? curNode.left : curNode.right;
+    }
+    return (lowestMax && lowestMax.val) > node.val ? lowestMax.val : null;
   }
 }
 

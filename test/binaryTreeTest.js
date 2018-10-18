@@ -58,11 +58,18 @@ describe('BinaryTree', function() {
   describe('constructor', function() {
     it('returns a node with null values with no inputs',function() {
       const nullNode = new BinaryNode();
-      console.log(nullNode);
       assert.equal(nullNode.val, null);
       assert.equal(nullNode.left, null);
       assert.equal(nullNode.right, null);
-      assert.equal(nullNode.parent, null);
     });
   });
+  describe('nextLargest', function() {
+    it('should return the next largest node by value assuming BST', function() {
+      assert.equal(nextLargest(sevenNode, sevenNode).val, 8);
+      assert.equal(nextLargest(threeNode, sevenNode), 5);
+    })
+    it('should return null if there is no greater valued node', function() {
+      assert.equal(nextLargest(thirteenNode, sevenNode), null);
+    })
+  })
 })
